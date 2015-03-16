@@ -8,23 +8,21 @@
 
 #import "MackenzieAppDelegate.h"
 #import "LetraAViewController.h"
+#import "LetterViewController.h"
 
 @implementation MackenzieAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    LetraAViewController *viewController = [[LetraAViewController alloc]
-                                           initWithNibName:nil
-                                           bundle:nil];
+    /*
+    LetraAViewController *viewController = [[LetraAViewController alloc]initWithNibName:nil bundle:nil];
+    //*/
+    LetterViewController *viewController = [[LetterViewController alloc]initWithNibName:nil bundle:nil];
+    //*/
     
-    
-    self.navigationController = [[UINavigationController alloc]
-                                 initWithRootViewController:viewController];
-    self.window = [[UIWindow alloc]
-                   initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = self.navigationController;
-
-
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

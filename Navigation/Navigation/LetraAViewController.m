@@ -20,8 +20,7 @@
                              initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(next:)];
     self.navigationItem.rightBarButtonItem=next;
     
-    UIButton *botao = [UIButton
-                                        buttonWithType:UIButtonTypeSystem];
+    UIButton *botao = [UIButton buttonWithType:UIButtonTypeSystem];
     [botao
      setTitle:@"Mostre uma palavra, uma figura e leia a palavra ao apertar um botao"
      forState:UIControlStateNormal];
