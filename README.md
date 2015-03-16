@@ -6,6 +6,11 @@
 
 3) Crie uma animação ao mostrar as imagens em cada página.
 
+4) Coloque um Tabbar que permita trocar a visualizacao: 
+
+* Letra grande com imagem pequena
+* Letra Pequena com imagem grande
+
 # Desafio Prata
 
 1) Faça com que, ao tocar na imagem, haja uma animação da escala da foto, como se fosse um zoom. Enquanto o usuário estiver tocando na foto é dado zoom, quando ele parar de tocar, volta ao tamanho normal.
