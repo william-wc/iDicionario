@@ -1,4 +1,4 @@
-# Desafio Bronze
+# Desafio Bronze (Obrigatório e tem que estar perfeito)
 
 1) O código não está bem feito. Precisamos de 26 view controllers? Corrija o código;
 
@@ -11,10 +11,10 @@
 * Letra grande com imagem pequena
 * Letra Pequena com imagem grande
 
-# Desafio Prata
+# Desafio Prata (Obrigatório)
 
 1) Faça com que, ao tocar na imagem, haja uma animação da escala da foto, como se fosse um zoom. Enquanto o usuário estiver tocando na foto é dado zoom, quando ele parar de tocar, volta ao tamanho normal.
 
-# Desafio Ouro
+# Desafio Ouro (Opcional - Vale pontos para WWDC)
 
 1) Crie uma tela inicial de busca no dicionario pela palavra; caso a palavra não exista no dicionário, é feita uma animação (como quando se digita a senha errada de desbloqueio no ios) e mostra uma mensagem; caso exista, é mostrada a view com a palavra buscada.
