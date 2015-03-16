@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="presentation" basedir="." default="build">
+
+	<description>This is a build system for course materials.</description>
+
+	<echo>Building course materials</echo>
+
+<!-- ===========================================================================
+                  PROPERTIES
+============================================================================ -->
+
+	<property environment="env" />
+
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="lib.dir" value="${basedir}/src/sty" />
+	<property name="build.dir" value="${basedir}/build" />
+
+<!-- ===========================================================================
+                          INIT
+============================================================================ -->
+
+
+	<target name="init">
+	   <mkdir dir="${build.dir}" />
+	   <uptodate property="uptodate.intro" srcfile="${src.dir}/presentation.tex" targetfile="${build.dir}/presentation.pdf" />
+	</target>
+
+<!-- ===========================================================================
+                        BUILD
+============================================================================ -->
+
+	<target name="build" depends="build.intro" />
+
+	<macrodef name="latex">
+		<attribute name="name" />
+		<attribute name="srcdir" />
+		<attribute name="locale" default="" />
+		<sequential>
+			<!-- we use 'exec' until a 'latexmk' task is available :-) -->
+			<exec dir="${build.dir}@{locale}" executable="latexmk" output="${build.dir}@{locale}/@{name}.log.ant">
+				<env key="TEXINPUTS" value="${lib.dir}:@{srcdir}@{locale}:" />
+				<arg line="-g -pdf @{srcdir}@{locale}/@{name}" />
+			</exec>
+		</sequential>
+	</macrodef>
+
+	<target name="build.intro" depends="init" unless="uptodate.intro">
+		<latex name="presentation" srcdir="${src.dir}" />
+	</target>
+
+
+	<!-- ===========================================================================
+CLEAN
+============================================================================ -->
+
+	<macrodef name="remove">
+		<attribute name="dir" />
+		<sequential>
+			<delete dir="@{dir}" includeemptydirs="yes" quiet="yes" failonerror="no" />
+		</sequential>
+	</macrodef>
+
+	<target name="clean" depends="clean.build" description="Deletes all generated build files." />
+
+	<target name="clean.build">
+		<remove dir="${build.dir}" />
+	</target>
+
+	<target name="clean.all">
+		<remove dir="${build.dir}" />
+		<remove dir="${dist.dir}" />
+	</target>
+
+</project>

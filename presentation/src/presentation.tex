@@ -1,0 +1,182 @@
+\documentclass[serif,mathserif]{beamer}
+
+
+\usepackage{fleqn}
+%%\usepackage{modefs}
+%% \usepackage{math}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amsfonts, epsfig, xspace}
+\usepackage{pstricks,pst-node}
+\usepackage{multimedia}
+\usepackage[normal,tight,center]{subfigure}
+\usepackage{listings}
+\setlength{\subfigcapskip}{-.5em}
+\usepackage{beamerthemesplit}
+\renewcommand\sfdefault{phv}
+\renewcommand\familydefault{\sfdefault}
+\usetheme{default}
+\usepackage{color}
+\useoutertheme{default}
+\usepackage{texnansi}
+\usepackage{marvosym}
+\definecolor{bottomcolour}{rgb}{0.32,0.3,0.38}
+\definecolor{middlecolour}{rgb}{0.08,0.08,0.16}
+\setbeamerfont{title}{size=\Huge}
+\setbeamercolor{structure}{fg=gray}
+\setbeamertemplate{frametitle}[default]%[center]
+\setbeamercolor{normal text}{bg=black, fg=white}
+\setbeamertemplate{background canvas}[vertical shading]
+[bottom=bottomcolour, middle=middlecolour, top=black]
+\setbeamertemplate{items}[circle]
+\setbeamerfont{frametitle}{size=\huge}
+\setbeamertemplate{navigation symbols}{} %no nav symbols
+
+\author[Vinicius Miana]{Vinicius Miana}
+
+\title[Short Title\hspace{2em}\insertframenumber/\inserttotalframenumber]{Tutorial Navigation}
+
+\date{12 de fevereiro de 2014} %leave out for today's date to be insterted
+
+\institute{Universidade Presbiteriana Mackenzie}
+
+\begin{document}
+
+
+\lstset{language=[Objective]C,
+  keywordstyle=\color{blue},
+  keywords=[2]{UIApplication,NSDictionary,UIViewController,UINavigationController,UITableViewCell},
+  keywordstyle=[2]\color{orange},
+  stringstyle=\color{red},
+  commentstyle=\color{green},
+  breaklines=true,
+  basicstyle=\footnotesize
+}
+
+\maketitle
+
+\section{UINavigationController}  
+
+
+\begin{frame}
+  \frametitle{Desafio: Como deixar as navegações no seu aplicativo fácil e intuitiva.}
+   Questões:
+  \begin{itemize}
+  \item Como funciona o UINavigationController? 
+  \item Quais são os componentes envolvidos no seu funcionamento?
+  \item Quais são os métodos do UIViewController que lidam com a navegação?
+  \item ?
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{UINavigationController}
+  \begin{itemize}
+  \item É um controller especial que mantém uma pilha com ViewControllers e suas Views correspondentes.
+  \item Ele precisa ser inicializado com um controlador raiz.
+  \item Para adicionar e remover controllers no stack usamos os métodos pushViewController e popViewController
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Para iniciar o projeto com um Navigation Controller}
+  \begin{itemize}
+  \item Crie um projeto vazio
+  \item Adicione o NavigationController como propriedade do AppDelegate
+  \item Instancie-o e defina-o como root viewController no método didFinishLaunchingWithOptions
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Iniciando a app com Navigation Controller}
+  \begin{lstlisting}
+    - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+      UIViewController *viewController = [[UIViewController alloc] initWithNibName:nil bundle:nil];
+      viewController.title = @"Primeira View";    
+      self.navigationController = [[UINavigationController alloc]
+        initWithRootViewController:viewController];
+      self.window = [[UIWindow alloc]
+        initWithFrame:[[UIScreen mainScreen] bounds]];
+      self.window.rootViewController = self.navigationController;
+
+      self.window.backgroundColor = [UIColor whiteColor];
+      [self.window makeKeyAndVisible];
+      return YES;
+    }
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Navegando}
+  A view instanciada desta maneira apresenta uma barra de navegação na parte superior da
+  tela. Para mostrar novas telas devemos usar:
+  \begin{lstlisting}
+    [self.navigationController pushViewController:umNovoViewController
+      animated:YES];  
+  \end{lstlisting}
+  Ao apresentar a nova View gerenciada por umNovoViewController, a barra de navegação apresenta também um botão de back que permite voltar para a view inicial.
+\end{frame}  
+
+  \begin{frame}[fragile]
+    \frametitle{Navegando}
+  A pilha de ViewControllers mostrados é mantida pelo NavigationController em um array que pode ser manipulado diretamente. Através da propriedade viewControllers:
+  \begin{lstlisting}
+    NSArray *currentControllers = self.navigationController.viewControllers;
+  \end{lstlisting}
+  Ao manipular diretamente este array perdemos a propriedade de animação. Para mantê-la, devemos
+  copiar o array, alterar seu conteúdo e depois alterar o stack do navigationController mantendo a animação na transição com o método:
+  \begin{lstlisting}
+  [self.navigationController setViewControllers:newControllers
+    animated:YES];
+  \end{lstlisting}  
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Adicionando botões na barra de navegação}
+  O UIViewController tem uma propriedade navigationItem que permite que um view controller interaja com
+  a barra de navegação. Olhe na documentação a classe UINavigationItem.
+  Para colocar um botão em uma view, devemos:
+  \begin{itemize}
+    \item Crie uma instância de UIBarButtonItem e atribua à propriedade rightBarButtonItem
+      \begin{lstlisting}
+        self.navigationItem.rightBarButtonItem =
+        [[UIBarButtonItem alloc] initWithTitle:@"Um Botao"
+          style:UIBarButtonItemStylePlain target:self action:@selector(umaAcao:)];
+        \end{lstlisting}
+      \item Onde devemos colocar este código?
+  \end{itemize} 
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{O desafio - Criar um dicionário infantil}
+  \begin{itemize}
+  \item Fork e Clone o projeto do github
+  \item BRONZE - Faça com que cada view mostre uma letra, uma palavra começada com a letra e seja capaz de ler a palavra em voz alta.
+  \item PRATA - O código não está bem feito. Precisamos de 26 view controllers?
+  \item OURO - Dá para evitar manter um stack de 26 views ao chegarmos na letra Z?
+  \end{itemize}
+\end{frame}
+
+
+
+  
+
+
+%   \begin{figure}[t]
+% \centering
+%\subfigure[Exemplos de estilo de células]{
+  %%      \includegraphics[width=5cm]{img/tableCellStyles.png}
+%}
+%\end{figure}
+
+
+
+
+\begin{frame}
+  \frametitle{Questions}
+\end{frame}
+\end{document}
