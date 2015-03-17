@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "LetterData.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface LetterViewController : UIViewController
+@interface LetterViewController : UIViewController 
+
+-(id)initWithLetter:(int)idx;
 
 
 @end

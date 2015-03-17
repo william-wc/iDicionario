@@ -9,13 +9,15 @@
 #import "LetterViewController.h"
 
 static NSArray *LETTERS;
+static AVSpeechSynthesizer *spchSynthesizer;
+static LetterViewController *prev, *next, *current;
 
 @implementation LetterViewController {
-    UIBarButtonItem *next;
-    UILabel *txtLetter;
+    UIBarButtonItem *btnNext;
+    UIBarButtonItem *btnPrev;
     UILabel *txtPhrase;
     UIImageView *image;
-    UIButton *imageButton;
+    UIButton *btnRead;
     UITabBarController *tabBar;
     
     int letterIndex;
@@ -52,91 +54,98 @@ static void initializaStaticVariables() {
                [LetterData create:@"Z" image:@"z.jpg" phrase:@"Zulu nut"],
                nil
                ];
+    
+    spchSynthesizer = [[AVSpeechSynthesizer alloc]init];
+    current = [[LetterViewController alloc] initWithLetter:0];
+    prev    = [[LetterViewController alloc] initWithLetter:0];
+    next    = [[LetterViewController alloc] initWithLetter:0];
 }
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+-(id)init {
+    return [self initWithLetter:0];
+}
+
+-(id)initWithLetter:(int)idx {
+    self = [super init];
     if(self) {
-        letterIndex = 0;
+        letterIndex = idx;
     }
     return self;
 }
 
--(void)setLetterIndex:(int)idx {
-    letterIndex = idx;
-}
-
 -(void)viewDidLoad {
     [super viewDidLoad];
+
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    LetterData *letter = LETTERS[letterIndex];
-    
-    //set title
-    self.title = letter.letter;
-    
-    //add top bar button
-    if(letterIndex < LETTERS.count - 1) {
-        next = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(next:)];
-        self.navigationItem.rightBarButtonItem = next;
-    }
+    //add top bar buttons
+    btnPrev = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(onPrev:)];
+    self.navigationItem.leftBarButtonItem = btnPrev;
+    btnNext = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(onNext:)];
+    self.navigationItem.rightBarButtonItem = btnNext;
     
     //add content(s)
     CGPoint center = self.view.center;
     double imgw = 200, imgh = 200;
     
-    txtLetter = [[UILabel alloc]initWithFrame:CGRectMake(center.x - imgw/2, 100, imgw, 50)];
-    txtLetter.textAlignment = NSTextAlignmentCenter;
-    txtLetter.text = letter.letter;
-    txtLetter.backgroundColor = [UIColor greenColor];
-    [self.view addSubview:txtLetter];
-    
-    txtPhrase = [[UILabel alloc]initWithFrame:CGRectMake(center.x - imgw/2, txtLetter.frame.origin.y + txtLetter.frame.size.height, imgw, 70)];
+    txtPhrase = [[UILabel alloc]initWithFrame:CGRectMake(center.x - imgw/2, 100, imgw, 70)];
     txtPhrase.textAlignment = NSTextAlignmentCenter;
     txtPhrase.lineBreakMode = NSLineBreakByWordWrapping;
     txtPhrase.numberOfLines = 0;
-    txtPhrase.text = letter.phrase;
     txtPhrase.backgroundColor = [UIColor grayColor];
     [self.view addSubview:txtPhrase];
-
-    image = [[UIImageView alloc]initWithFrame:CGRectMake(center.x - imgw/2, txtPhrase.frame.origin.y + txtPhrase.frame.size.height, imgw, imgh)];
-    image.image = [UIImage imageNamed:letter.image];
+    
+    btnRead = [UIButton buttonWithType:UIButtonTypeSystem];
+    [btnRead setFrame:CGRectMake(center.x - imgw/2, txtPhrase.frame.origin.y + txtPhrase.frame.size.height, imgw, 70)];
+    [btnRead setTitle:@"Read" forState:UIControlStateNormal];
+    [btnRead addTarget:self action:@selector(onBtnRead:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnRead];
+    
+    image = [[UIImageView alloc]initWithFrame:CGRectMake(center.x - imgw/2, btnRead.frame.origin.y + btnRead.frame.size.height, imgw, imgh)];
     image.userInteractionEnabled = YES;
     [image addGestureRecognizer:[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(onHoldImage:)]];
     [self.view addSubview:image];
     
-    //add tabBar
-    tabBar = [[UITabBarController alloc]init];
-    
+    [self setLetterIndex:letterIndex];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [image setTransform:CGAffineTransformMakeScale(0.5, 0.5)];
+    [txtPhrase setAlpha:0];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self animateIntro];
+    [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [image setTransform:CGAffineTransformMakeScale(1, 1)];
+    
+        [txtPhrase setAlpha:1];
+        [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:txtPhrase cache:NO];
+    } completion:^(BOOL finished){
+        
+    }];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self animateOutro];
+    [UIView animateWithDuration:0.3 animations:^{
+        [image setTransform:CGAffineTransformMakeScale(0.5, 0.5)];
+        [txtPhrase setAlpha:0];
+    }];
+}
+
+-(void)setLetterIndex:(int)idx {
+    letterIndex = idx;
+    LetterData *letter = LETTERS[idx];
+    
+    self.title = letter.letter;
+    txtPhrase.text = letter.phrase;
+    //todo do not use cached images
+    image.image = [UIImage imageNamed:letter.image];
 }
 
 #pragma mark - Animations
--(void)animateIntro {
-    [UIView animateWithDuration:0.3 animations:^{
-        [image setTransform:CGAffineTransformMakeScale(1, 1)];
-    }];
-}
-
--(void)animateOutro {
-    [UIView animateWithDuration:0.3 animations:^{
-        [image setTransform:CGAffineTransformMakeScale(0.5, 0.5)];
-    }];
-}
-
 -(void)animateImageZoomIn {
     CGRect imgRect = image.frame;
     CGRect rect = self.view.frame;
@@ -148,7 +157,7 @@ static void initializaStaticVariables() {
         z = rect.size.height / image.frame.size.height;
     }
     
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         [image setTransform:CGAffineTransformMakeTranslation(-imgRect.origin.x + rect.size.width/2 - imgRect.size.width * z / 2,
                                                              -imgRect.origin.y + rect.size.height/2 - imgRect.size.height * z / 2)];
         [image setTransform:CGAffineTransformMakeScale(z, z)];
@@ -162,10 +171,45 @@ static void initializaStaticVariables() {
 }
 
 #pragma mark - Gestures / Events
--(void)next:(id)sender {
-    LetterViewController *nextView = [[LetterViewController alloc]initWithNibName:nil bundle:NULL];
-    [nextView setLetterIndex:letterIndex + 1];
-    [self.navigationController pushViewController:nextView animated:YES];
+-(void)onNext:(id)sender {
+    [prev setLetterIndex:letterIndex];
+    [next setLetterIndex:(letterIndex < LETTERS.count - 1)? letterIndex + 1 : 0];
+    LetterViewController *t = current;
+    current = next;
+    next = t;
+//    [self.navigationController pushViewController:current animated:YES];
+//    [self.navigationController setViewControllers:@[prev,current] animated:NO];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
+    }];
+    [self.navigationController setViewControllers:@[current] animated:NO];
+}
+
+-(void)onPrev:(id)sender {
+    [prev setLetterIndex:(letterIndex > 0)? letterIndex - 1 : (int)LETTERS.count - 1];
+    [next setLetterIndex:letterIndex];
+    LetterViewController *t = current;
+    current = prev;
+    prev = t;
+    //[self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController setViewControllers:@[prev,current] animated:NO];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.navigationController.view cache:NO];
+    }];
+    [self.navigationController setViewControllers:@[current] animated:NO];
+}
+
+-(void)onBtnRead:(id)sender {
+    if(spchSynthesizer.isSpeaking)
+        return;
+    LetterData *data = LETTERS[letterIndex];
+    AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc]initWithString:data.phrase];
+    [spchSynthesizer stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+    [spchSynthesizer speakUtterance:utterance];
 }
 
 -(void)onHoldImage:(UITapGestureRecognizer *)sender {
@@ -175,5 +219,6 @@ static void initializaStaticVariables() {
         [self animateImageZoomOut];
     }
 }
+
 
 @end

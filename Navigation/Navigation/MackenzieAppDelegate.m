@@ -17,7 +17,7 @@
     /*
     LetraAViewController *viewController = [[LetraAViewController alloc]initWithNibName:nil bundle:nil];
     //*/
-    LetterViewController *viewController = [[LetterViewController alloc]initWithNibName:nil bundle:nil];
+    LetterViewController *viewController = [[LetterViewController alloc] initWithLetter:0];
     //*/
     
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
