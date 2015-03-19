@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LetterData.h"
 #import <AVFoundation/AVFoundation.h>
+#import "DataController.h"
 
 @interface LetterViewController : UIViewController 
 

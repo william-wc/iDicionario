@@ -7,22 +7,22 @@
 //
 
 #import "MackenzieAppDelegate.h"
-#import "LetraAViewController.h"
 #import "LetterViewController.h"
+#import "MainTabBarController.h"
 
 @implementation MackenzieAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    UIViewController *view;
     /*
-    LetraAViewController *viewController = [[LetraAViewController alloc]initWithNibName:nil bundle:nil];
+    view = [[LetterViewController alloc] initWithLetter:0];
     //*/
-    LetterViewController *viewController = [[LetterViewController alloc] initWithLetter:0];
+    view = [[MainTabBarController alloc]init];
     //*/
     
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = self.navigationController;
+    self.window.rootViewController = view;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

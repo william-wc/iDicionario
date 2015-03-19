@@ -19,8 +19,6 @@
 		27156F6818B76AF50053A99C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27156F5018B76AF50053A99C /* UIKit.framework */; };
 		27156F7018B76AF50053A99C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27156F6E18B76AF50053A99C /* InfoPlist.strings */; };
 		27156F7218B76AF50053A99C /* NavigationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27156F7118B76AF50053A99C /* NavigationTests.m */; };
-		27156F7D18BA89430053A99C /* LetraAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27156F7C18BA89430053A99C /* LetraAViewController.m */; };
-		27156F8018BA8B210053A99C /* LetraBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27156F7F18BA8B210053A99C /* LetraBViewController.m */; };
 		8F6335881AB74A0200E170BD /* LetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6335871AB74A0200E170BD /* LetterViewController.m */; };
 		8F63358F1AB7702500E170BD /* LetterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F63358E1AB7702500E170BD /* LetterData.m */; };
 		8F7F5DAC1AB88E80000A3E3C /* a.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5D921AB88E80000A3E3C /* a.jpg */; };
@@ -49,6 +47,12 @@
 		8F7F5DC31AB88E80000A3E3C /* x.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5DA91AB88E80000A3E3C /* x.jpeg */; };
 		8F7F5DC41AB88E80000A3E3C /* y.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5DAA1AB88E80000A3E3C /* y.jpg */; };
 		8F7F5DC51AB88E80000A3E3C /* z.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5DAB1AB88E80000A3E3C /* z.jpg */; };
+		8F7F5DC81ABB3F1D000A3E3C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F5DC71ABB3F1D000A3E3C /* MainTabBarController.m */; };
+		8F7F5DD11ABB428A000A3E3C /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F5DD01ABB428A000A3E3C /* DataController.m */; };
+		8F7F5DD51ABB4ABA000A3E3C /* LetterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F5DD41ABB4ABA000A3E3C /* LetterTableViewCell.m */; };
+		8F7F5DDB1ABB4B3B000A3E3C /* LetterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F5DDA1ABB4B3B000A3E3C /* LetterTableViewController.m */; };
+		8F7F5DDD1ABB56E9000A3E3C /* bullet list.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5DDC1ABB56E9000A3E3C /* bullet list.png */; };
+		8F7F5DDF1ABB57CB000A3E3C /* book icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5DDE1ABB57CB000A3E3C /* book icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,10 +82,6 @@
 		27156F6D18B76AF50053A99C /* NavigationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NavigationTests-Info.plist"; sourceTree = "<group>"; };
 		27156F6F18B76AF50053A99C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		27156F7118B76AF50053A99C /* NavigationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavigationTests.m; sourceTree = "<group>"; };
-		27156F7B18BA89430053A99C /* LetraAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetraAViewController.h; sourceTree = "<group>"; };
-		27156F7C18BA89430053A99C /* LetraAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetraAViewController.m; sourceTree = "<group>"; };
-		27156F7E18BA8B210053A99C /* LetraBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetraBViewController.h; sourceTree = "<group>"; };
-		27156F7F18BA8B210053A99C /* LetraBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetraBViewController.m; sourceTree = "<group>"; };
 		8F6335861AB74A0200E170BD /* LetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterViewController.h; sourceTree = "<group>"; };
 		8F6335871AB74A0200E170BD /* LetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterViewController.m; sourceTree = "<group>"; };
 		8F63358D1AB7702500E170BD /* LetterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterData.h; sourceTree = "<group>"; };
@@ -112,6 +112,16 @@
 		8F7F5DA91AB88E80000A3E3C /* x.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = x.jpeg; sourceTree = "<group>"; };
 		8F7F5DAA1AB88E80000A3E3C /* y.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = y.jpg; sourceTree = "<group>"; };
 		8F7F5DAB1AB88E80000A3E3C /* z.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = z.jpg; sourceTree = "<group>"; };
+		8F7F5DC61ABB3F1D000A3E3C /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		8F7F5DC71ABB3F1D000A3E3C /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		8F7F5DCF1ABB428A000A3E3C /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
+		8F7F5DD01ABB428A000A3E3C /* DataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
+		8F7F5DD31ABB4ABA000A3E3C /* LetterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterTableViewCell.h; sourceTree = "<group>"; };
+		8F7F5DD41ABB4ABA000A3E3C /* LetterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterTableViewCell.m; sourceTree = "<group>"; };
+		8F7F5DD91ABB4B3B000A3E3C /* LetterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterTableViewController.h; sourceTree = "<group>"; };
+		8F7F5DDA1ABB4B3B000A3E3C /* LetterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterTableViewController.m; sourceTree = "<group>"; };
+		8F7F5DDC1ABB56E9000A3E3C /* bullet list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullet list.png"; sourceTree = "<group>"; };
+		8F7F5DDE1ABB57CB000A3E3C /* book icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,14 +186,18 @@
 				27156F5C18B76AF50053A99C /* MackenzieAppDelegate.m */,
 				27156F5E18B76AF50053A99C /* Images.xcassets */,
 				27156F5318B76AF50053A99C /* Supporting Files */,
-				27156F7B18BA89430053A99C /* LetraAViewController.h */,
-				27156F7C18BA89430053A99C /* LetraAViewController.m */,
-				27156F7E18BA8B210053A99C /* LetraBViewController.h */,
-				27156F7F18BA8B210053A99C /* LetraBViewController.m */,
 				8F6335861AB74A0200E170BD /* LetterViewController.h */,
 				8F6335871AB74A0200E170BD /* LetterViewController.m */,
 				8F63358D1AB7702500E170BD /* LetterData.h */,
 				8F63358E1AB7702500E170BD /* LetterData.m */,
+				8F7F5DC61ABB3F1D000A3E3C /* MainTabBarController.h */,
+				8F7F5DC71ABB3F1D000A3E3C /* MainTabBarController.m */,
+				8F7F5DCF1ABB428A000A3E3C /* DataController.h */,
+				8F7F5DD01ABB428A000A3E3C /* DataController.m */,
+				8F7F5DD31ABB4ABA000A3E3C /* LetterTableViewCell.h */,
+				8F7F5DD41ABB4ABA000A3E3C /* LetterTableViewCell.m */,
+				8F7F5DD91ABB4B3B000A3E3C /* LetterTableViewController.h */,
+				8F7F5DDA1ABB4B3B000A3E3C /* LetterTableViewController.m */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -220,6 +234,8 @@
 		8F63358A1AB7580600E170BD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8F7F5DDE1ABB57CB000A3E3C /* book icon.png */,
+				8F7F5DDC1ABB56E9000A3E3C /* bullet list.png */,
 				8F7F5D921AB88E80000A3E3C /* a.jpg */,
 				8F7F5D931AB88E80000A3E3C /* b.jpg */,
 				8F7F5D941AB88E80000A3E3C /* c.jpg */,
@@ -332,6 +348,7 @@
 				8F7F5DBD1AB88E80000A3E3C /* r.jpeg in Resources */,
 				8F7F5DBC1AB88E80000A3E3C /* q.jpg in Resources */,
 				8F7F5DB41AB88E80000A3E3C /* i.jpg in Resources */,
+				8F7F5DDF1ABB57CB000A3E3C /* book icon.png in Resources */,
 				8F7F5DAF1AB88E80000A3E3C /* d.jpg in Resources */,
 				8F7F5DB01AB88E80000A3E3C /* e.jpg in Resources */,
 				8F7F5DB11AB88E80000A3E3C /* f.jpg in Resources */,
@@ -346,6 +363,7 @@
 				8F7F5DB71AB88E80000A3E3C /* l.jpg in Resources */,
 				8F7F5DB81AB88E80000A3E3C /* m.jpg in Resources */,
 				8F7F5DAD1AB88E80000A3E3C /* b.jpg in Resources */,
+				8F7F5DDD1ABB56E9000A3E3C /* bullet list.png in Resources */,
 				8F7F5DBE1AB88E80000A3E3C /* s.jpg in Resources */,
 				8F7F5DC11AB88E80000A3E3C /* v.jpg in Resources */,
 				8F7F5DC51AB88E80000A3E3C /* z.jpg in Resources */,
@@ -373,9 +391,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				27156F5D18B76AF50053A99C /* MackenzieAppDelegate.m in Sources */,
+				8F7F5DD11ABB428A000A3E3C /* DataController.m in Sources */,
+				8F7F5DD51ABB4ABA000A3E3C /* LetterTableViewCell.m in Sources */,
+				8F7F5DC81ABB3F1D000A3E3C /* MainTabBarController.m in Sources */,
+				8F7F5DDB1ABB4B3B000A3E3C /* LetterTableViewController.m in Sources */,
 				8F63358F1AB7702500E170BD /* LetterData.m in Sources */,
-				27156F7D18BA89430053A99C /* LetraAViewController.m in Sources */,
-				27156F8018BA8B210053A99C /* LetraBViewController.m in Sources */,
 				27156F5918B76AF50053A99C /* main.m in Sources */,
 				8F6335881AB74A0200E170BD /* LetterViewController.m in Sources */,
 			);
