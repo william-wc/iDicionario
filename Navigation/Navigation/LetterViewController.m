@@ -17,6 +17,7 @@ static LetterViewController *prev, *next, *current;
     UILabel *txtPhrase;
     UIImageView *image;
     UITabBarController *tabBar;
+    UIToolbar *toolbar;
     
     NSArray *LETTERS;
     
@@ -70,10 +71,23 @@ static void initializaStaticVariables() {
     [txtPhrase addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onTapPhrase:)]];
     [self.view addSubview:txtPhrase];
     
-    image = [[UIImageView alloc]initWithFrame:CGRectMake(center.x - imgw/2, txtPhrase.frame.origin.y + txtPhrase.frame.size.height, imgw, imgh)];
+    image = [[UIImageView alloc]initWithFrame:CGRectMake(center.x - imgw/2, txtPhrase.frame.origin.y + txtPhrase.frame.size.height + 50, imgw, imgh)];
     image.userInteractionEnabled = YES;
     [image addGestureRecognizer:[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(onHoldImage:)]];
     [self.view addSubview:image];
+    
+    toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height - 40 - 50, self.view.frame.size.width, 40)];
+    
+    NSArray *items = @[
+                       [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+        [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"edit icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onTapEdit:)],
+                       [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+        [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"edit image icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onTapEdit:)],
+                       [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+    ];
+    toolbar.items = items;
+    toolbar.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:toolbar];
     
     [self setLetterIndex:letterIndex];
 }
@@ -175,5 +189,8 @@ static void initializaStaticVariables() {
     image.center = center;
 }
 
+-(void)onTapEdit:(UITapGestureRecognizer *)sender {
+    NSLog(@"tap");
+}
 
 @end

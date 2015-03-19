@@ -17,9 +17,6 @@
 -(void)viewDidLoad {
     [super viewDidLoad];
     
-    CGRect fr = [self.view bounds];
-    NSLog(@"%f, %f", fr.size.width, fr.size.height);
-    
     lvc = [[LetterViewController alloc]initWithLetter:0];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:lvc];
     

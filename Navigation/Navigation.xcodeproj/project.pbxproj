@@ -53,6 +53,9 @@
 		8F7F5DDB1ABB4B3B000A3E3C /* LetterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7F5DDA1ABB4B3B000A3E3C /* LetterTableViewController.m */; };
 		8F7F5DDD1ABB56E9000A3E3C /* bullet list.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5DDC1ABB56E9000A3E3C /* bullet list.png */; };
 		8F7F5DDF1ABB57CB000A3E3C /* book icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5DDE1ABB57CB000A3E3C /* book icon.png */; };
+		8F7F5DE21ABB639E000A3E3C /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5DE01ABB639E000A3E3C /* arrow.png */; };
+		8F7F5DE31ABB639E000A3E3C /* edit icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5DE11ABB639E000A3E3C /* edit icon.png */; };
+		8F7F5DE51ABB6570000A3E3C /* edit image icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5DE41ABB6570000A3E3C /* edit image icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +125,9 @@
 		8F7F5DDA1ABB4B3B000A3E3C /* LetterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterTableViewController.m; sourceTree = "<group>"; };
 		8F7F5DDC1ABB56E9000A3E3C /* bullet list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bullet list.png"; sourceTree = "<group>"; };
 		8F7F5DDE1ABB57CB000A3E3C /* book icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "book icon.png"; sourceTree = "<group>"; };
+		8F7F5DE01ABB639E000A3E3C /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		8F7F5DE11ABB639E000A3E3C /* edit icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit icon.png"; sourceTree = "<group>"; };
+		8F7F5DE41ABB6570000A3E3C /* edit image icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit image icon.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +240,9 @@
 		8F63358A1AB7580600E170BD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8F7F5DE41ABB6570000A3E3C /* edit image icon.png */,
+				8F7F5DE01ABB639E000A3E3C /* arrow.png */,
+				8F7F5DE11ABB639E000A3E3C /* edit icon.png */,
 				8F7F5DDE1ABB57CB000A3E3C /* book icon.png */,
 				8F7F5DDC1ABB56E9000A3E3C /* bullet list.png */,
 				8F7F5D921AB88E80000A3E3C /* a.jpg */,
@@ -357,6 +366,7 @@
 				8F7F5DAC1AB88E80000A3E3C /* a.jpg in Resources */,
 				8F7F5DB31AB88E80000A3E3C /* h.jpg in Resources */,
 				8F7F5DB51AB88E80000A3E3C /* j.jpg in Resources */,
+				8F7F5DE31ABB639E000A3E3C /* edit icon.png in Resources */,
 				27156F5718B76AF50053A99C /* InfoPlist.strings in Resources */,
 				8F7F5DC41AB88E80000A3E3C /* y.jpg in Resources */,
 				8F7F5DB91AB88E80000A3E3C /* n.jpeg in Resources */,
@@ -366,11 +376,13 @@
 				8F7F5DDD1ABB56E9000A3E3C /* bullet list.png in Resources */,
 				8F7F5DBE1AB88E80000A3E3C /* s.jpg in Resources */,
 				8F7F5DC11AB88E80000A3E3C /* v.jpg in Resources */,
+				8F7F5DE21ABB639E000A3E3C /* arrow.png in Resources */,
 				8F7F5DC51AB88E80000A3E3C /* z.jpg in Resources */,
 				8F7F5DB21AB88E80000A3E3C /* g.jpg in Resources */,
 				8F7F5DB61AB88E80000A3E3C /* k.jpg in Resources */,
 				27156F5F18B76AF50053A99C /* Images.xcassets in Resources */,
 				8F7F5DBA1AB88E80000A3E3C /* o.jpg in Resources */,
+				8F7F5DE51ABB6570000A3E3C /* edit image icon.png in Resources */,
 				8F7F5DAE1AB88E80000A3E3C /* c.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

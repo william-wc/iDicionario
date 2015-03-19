@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LetterTableViewCell.h"
+#import "LetterData.h"
+#import "DataController.h"
 
-@interface LetterTableViewController : UITableViewController
+@interface LetterTableViewController : UITableViewController<UITableViewDelegate>
 
 @end

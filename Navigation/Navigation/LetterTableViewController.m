@@ -7,9 +7,7 @@
 //
 
 #import "LetterTableViewController.h"
-#import "LetterTableViewCell.h"
-#import "LetterData.h"
-#import "DataController.h"
+
 
 static NSString *CELL_IDENTIFIER = @"myCustomCell";
 
@@ -55,6 +53,11 @@ static NSString *CELL_IDENTIFIER = @"myCustomCell";
     [cell.txtTitle setText:[NSString stringWithFormat:@"%@ - %@", data.letter, data.phrase]];
     
     return cell;
+}
+
+#pragma mark - Delegate
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 @end
