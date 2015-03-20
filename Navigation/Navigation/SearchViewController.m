@@ -52,6 +52,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [lbl setText:@"Search for word in dictionary:"];
+    [txtSearch setText:@""];
 }
 
 -(void)shakeTextField {
@@ -65,8 +66,11 @@
 }
 
 -(void)onBtnFind:(id)sender {
-    if([DataController hasWord:txtSearch.text]) {
-        
+    int letterIndex = [DataController getWordIndex:txtSearch.text];
+    if(letterIndex != -1) {
+        NSLog(@"sending %d", letterIndex);
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc postNotificationName:@"search_found" object:self userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:letterIndex] forKey:@"letterIndex"]];
     } else {
         [lbl setText:@"Word not found"];
         [self shakeTextField];

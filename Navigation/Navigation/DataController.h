@@ -21,6 +21,6 @@
 +(void)saveImage:(UIImage *)image name:(NSString *)name;
 +(UIImage *)recoverImageByName:(NSString *)name;
 
-+(BOOL)hasWord:(NSString *)word;
++(int)getWordIndex:(NSString *)word;
 
 @end

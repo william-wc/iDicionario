@@ -14,6 +14,8 @@
     LetterViewController *lvc;
     LetterTableViewController *ltvc;
     SearchViewController *svc;
+    
+    NSNotificationCenter *nc;
 }
 
 -(void)viewDidLoad {
@@ -25,6 +27,16 @@
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:lvc];
     self.viewControllers = @[nav, ltvc, svc];
+    
+    nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(onSearchFound:) name:@"search_found" object:nil];
+}
+
+-(void)onSearchFound:(NSNotification *)notification {
+    int letterIndex = [(NSNumber *)notification.userInfo[@"letterIndex"] intValue];
+    NSLog(@"received %d", letterIndex);
+    [lvc setLetterIndex:letterIndex];
+    [self setSelectedIndex:0];
 }
 
 @end

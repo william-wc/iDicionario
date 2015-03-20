@@ -16,5 +16,7 @@
 
 -(id)initWithLetter:(int)idx;
 
+-(void)setLetterIndex:(int)idx;
+
 
 @end
