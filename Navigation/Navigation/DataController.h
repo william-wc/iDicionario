@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LetterData.h"
 
 @interface DataController : NSObject
 
 +(NSArray *)getLetters;
++(LetterData *)getDataAtIndex:(int)idx;
 
 @end

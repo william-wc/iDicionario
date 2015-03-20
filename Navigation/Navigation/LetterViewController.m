@@ -19,6 +19,8 @@ static LetterViewController *prev, *next, *current;
     UITabBarController *tabBar;
     UIToolbar *toolbar;
     
+    int currentLetter;
+    
     NSArray *LETTERS;
     
     int letterIndex;
@@ -80,9 +82,9 @@ static void initializaStaticVariables() {
     
     NSArray *items = @[
                        [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-        [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"edit icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onTapEdit:)],
+        [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"edit icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onTapEditPhrase:)],
                        [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-        [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"edit image icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onTapEdit:)],
+        [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"edit image icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onTapEditImage:)],
                        [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
     ];
     toolbar.items = items;
@@ -96,6 +98,7 @@ static void initializaStaticVariables() {
     [super viewWillAppear:animated];
     [image setTransform:CGAffineTransformMakeScale(0.5, 0.5)];
     [txtPhrase setAlpha:0];
+    [self setLetterIndex:letterIndex];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -189,8 +192,14 @@ static void initializaStaticVariables() {
     image.center = center;
 }
 
--(void)onTapEdit:(UITapGestureRecognizer *)sender {
-    NSLog(@"tap");
+-(void)onTapEditPhrase:(UITapGestureRecognizer *)sender {
+    LetterEditViewController *levc = [LetterEditViewController getInstance];
+    [levc setLetterIndex:letterIndex];
+    [self.navigationController pushViewController:levc animated:YES];
+}
+
+-(void)onTapEditImage:(UITapGestureRecognizer *)sender {
+    
 }
 
 @end

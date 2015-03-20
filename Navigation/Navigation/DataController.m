@@ -52,4 +52,8 @@ static void initializaStaticVariables() {
     return LETTERS;
 }
 
++(LetterData *)getDataAtIndex:(int)idx {
+    return LETTERS[idx];
+}
+
 @end

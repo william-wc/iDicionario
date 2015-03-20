@@ -21,6 +21,7 @@
 		27156F7218B76AF50053A99C /* NavigationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27156F7118B76AF50053A99C /* NavigationTests.m */; };
 		8F6335881AB74A0200E170BD /* LetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F6335871AB74A0200E170BD /* LetterViewController.m */; };
 		8F63358F1AB7702500E170BD /* LetterData.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F63358E1AB7702500E170BD /* LetterData.m */; };
+		8F7C81341ABC408900C69AAB /* LetterEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C81331ABC408900C69AAB /* LetterEditViewController.m */; };
 		8F7F5DAC1AB88E80000A3E3C /* a.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5D921AB88E80000A3E3C /* a.jpg */; };
 		8F7F5DAD1AB88E80000A3E3C /* b.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5D931AB88E80000A3E3C /* b.jpg */; };
 		8F7F5DAE1AB88E80000A3E3C /* c.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8F7F5D941AB88E80000A3E3C /* c.jpg */; };
@@ -89,6 +90,8 @@
 		8F6335871AB74A0200E170BD /* LetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterViewController.m; sourceTree = "<group>"; };
 		8F63358D1AB7702500E170BD /* LetterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterData.h; sourceTree = "<group>"; };
 		8F63358E1AB7702500E170BD /* LetterData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterData.m; sourceTree = "<group>"; };
+		8F7C81321ABC408900C69AAB /* LetterEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LetterEditViewController.h; sourceTree = "<group>"; };
+		8F7C81331ABC408900C69AAB /* LetterEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LetterEditViewController.m; sourceTree = "<group>"; };
 		8F7F5D921AB88E80000A3E3C /* a.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a.jpg; sourceTree = "<group>"; };
 		8F7F5D931AB88E80000A3E3C /* b.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = b.jpg; sourceTree = "<group>"; };
 		8F7F5D941AB88E80000A3E3C /* c.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c.jpg; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				8F7F5DD41ABB4ABA000A3E3C /* LetterTableViewCell.m */,
 				8F7F5DD91ABB4B3B000A3E3C /* LetterTableViewController.h */,
 				8F7F5DDA1ABB4B3B000A3E3C /* LetterTableViewController.m */,
+				8F7C81321ABC408900C69AAB /* LetterEditViewController.h */,
+				8F7C81331ABC408900C69AAB /* LetterEditViewController.m */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -405,6 +410,7 @@
 				27156F5D18B76AF50053A99C /* MackenzieAppDelegate.m in Sources */,
 				8F7F5DD11ABB428A000A3E3C /* DataController.m in Sources */,
 				8F7F5DD51ABB4ABA000A3E3C /* LetterTableViewCell.m in Sources */,
+				8F7C81341ABC408900C69AAB /* LetterEditViewController.m in Sources */,
 				8F7F5DC81ABB3F1D000A3E3C /* MainTabBarController.m in Sources */,
 				8F7F5DDB1ABB4B3B000A3E3C /* LetterTableViewController.m in Sources */,
 				8F63358F1AB7702500E170BD /* LetterData.m in Sources */,
