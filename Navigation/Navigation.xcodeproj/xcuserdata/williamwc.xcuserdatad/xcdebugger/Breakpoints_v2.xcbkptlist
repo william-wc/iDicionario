@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Navigation/LetterViewController.m"
-            timestampString = "448568219.465565"
+            timestampString = "448577639.909255"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "-setLetterIndex:"
             landmarkType = "5">
          </BreakpointContent>

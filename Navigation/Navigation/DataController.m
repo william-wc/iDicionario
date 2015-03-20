@@ -145,4 +145,14 @@ static void initializaStaticVariables() {
     return [UIImage imageWithContentsOfFile:filePath];
 }
 
++(BOOL)hasWord:(NSString *)word {
+    word = [word lowercaseString];
+    for (LetterData *data in LETTERS) {
+        if([word isEqualToString:[data.phrase lowercaseString]]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 @end

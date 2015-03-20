@@ -8,20 +8,23 @@
 
 #import "MainTabBarController.h"
 #import "LetterTableViewController.h"
+#import "SearchViewController.h"
 
 @implementation MainTabBarController {
     LetterViewController *lvc;
     LetterTableViewController *ltvc;
+    SearchViewController *svc;
 }
 
 -(void)viewDidLoad {
     [super viewDidLoad];
     
     lvc = [[LetterViewController alloc]initWithLetter:0];
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:lvc];
-    
     ltvc = [[LetterTableViewController alloc]init];
-    self.viewControllers = @[nav, ltvc];
+    svc = [[SearchViewController alloc]init];
+    
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:lvc];
+    self.viewControllers = @[nav, ltvc, svc];
 }
 
 @end

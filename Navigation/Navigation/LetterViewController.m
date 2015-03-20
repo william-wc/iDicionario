@@ -21,6 +21,7 @@ static LetterViewController *prev, *next, *current;
     
     int currentLetter;
     int letterIndex;
+    float pinchZoom;
 }
 
 __attribute__((constructor))
@@ -70,8 +71,11 @@ static void initializaStaticVariables() {
     [self.view addSubview:txtPhrase];
     
     image = [[UIImageView alloc]initWithFrame:CGRectMake(center.x - imgw/2, txtPhrase.frame.origin.y + txtPhrase.frame.size.height + 50, imgw, imgh)];
-    image.userInteractionEnabled = YES;
     [image addGestureRecognizer:[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(onHoldImage:)]];
+    [image addGestureRecognizer:[[UIPinchGestureRecognizer alloc]initWithTarget:self action:@selector(onPinchImage:)]];
+    [image.layer setCornerRadius:image.frame.size.width/2];
+    [image.layer setMasksToBounds:YES];
+    [image setUserInteractionEnabled:YES];
     [self.view addSubview:image];
     
     toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height - 40 - 50, self.view.frame.size.width, 40)];
@@ -79,8 +83,6 @@ static void initializaStaticVariables() {
     NSArray *items = @[
                        [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
         [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"edit icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onTapEditPhrase:)],
-                       [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-        [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"edit image icon.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onTapEditImage:)],
                        [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
     ];
     toolbar.items = items;
@@ -94,6 +96,7 @@ static void initializaStaticVariables() {
     [super viewWillAppear:animated];
     [image setTransform:CGAffineTransformMakeScale(0.5, 0.5)];
     [txtPhrase setAlpha:0];
+    pinchZoom = 1;
     [self setLetterIndex:letterIndex];
 }
 
@@ -189,6 +192,13 @@ static void initializaStaticVariables() {
     }
     CGPoint center = [sender locationInView:self.view];
     image.center = center;
+}
+
+-(void)onPinchImage:(UIPinchGestureRecognizer *)sender {
+    pinchZoom = sender.scale;
+    pinchZoom = MIN(pinchZoom, 2.0);
+    pinchZoom = MAX(pinchZoom, 0.5);
+    [image setTransform:CGAffineTransformMakeScale(pinchZoom, pinchZoom)];
 }
 
 -(void)onTapEditPhrase:(UITapGestureRecognizer *)sender {

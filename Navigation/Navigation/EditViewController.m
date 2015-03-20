@@ -55,6 +55,8 @@
     //[image setBackgroundColor:[UIColor grayColor]];
     [image setUserInteractionEnabled:YES];
     [image addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onTapImage:)]];
+    [image.layer setCornerRadius:image.frame.size.width/2];
+    [image.layer setMasksToBounds:YES];
     [self.view addSubview:image];
     
     relative = image.frame;
