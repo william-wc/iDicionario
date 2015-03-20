@@ -8,10 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "LetterData.h"
+#import <Realm/Realm.h>
 
 @interface DataController : NSObject
 
 +(NSArray *)getLetters;
 +(LetterData *)getDataAtIndex:(int)idx;
++(void)updateData:(LetterData *)data;
+
++(void)logData;
+
++(void)saveImage:(UIImage *)image name:(NSString *)name;
++(UIImage *)recoverImageByName:(NSString *)name;
 
 @end

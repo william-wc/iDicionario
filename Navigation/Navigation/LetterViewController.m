@@ -20,9 +20,6 @@ static LetterViewController *prev, *next, *current;
     UIToolbar *toolbar;
     
     int currentLetter;
-    
-    NSArray *LETTERS;
-    
     int letterIndex;
 }
 
@@ -42,7 +39,6 @@ static void initializaStaticVariables() {
     self = [super init];
     if(self) {
         letterIndex = idx;
-        LETTERS = DataController.getLetters;
         self.title = @"Letter";
         self.tabBarItem.image = [UIImage imageNamed:@"book icon.png"];
     }
@@ -68,7 +64,7 @@ static void initializaStaticVariables() {
     txtPhrase.textAlignment = NSTextAlignmentCenter;
     txtPhrase.lineBreakMode = NSLineBreakByWordWrapping;
     txtPhrase.numberOfLines = 0;
-    //txtPhrase.backgroundColor = [UIColor grayColor];
+    txtPhrase.backgroundColor = [UIColor whiteColor];
     [txtPhrase setUserInteractionEnabled:YES];
     [txtPhrase addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onTapPhrase:)]];
     [self.view addSubview:txtPhrase];
@@ -123,11 +119,15 @@ static void initializaStaticVariables() {
 
 -(void)setLetterIndex:(int)idx {
     letterIndex = idx;
-    LetterData *letter = LETTERS[idx];
+    LetterData *data = [DataController getDataAtIndex:letterIndex];
     
-    txtPhrase.text = [NSString stringWithFormat:@"%@\n%@", letter.letter, letter.phrase];
+    txtPhrase.text = [NSString stringWithFormat:@"%@\n%@", data.letter, data.phrase];
     //todo do not use cached images
-    image.image = [UIImage imageNamed:letter.image];
+    NSLog(@"%@, %@",data.userImage, data.defaultImage);
+    UIImage *img = [DataController recoverImageByName:data.userImage];
+    if(!img)
+        img = [UIImage imageNamed:data.defaultImage];
+    image.image = img;
 }
 
 #pragma mark - Animations
@@ -146,7 +146,7 @@ static void initializaStaticVariables() {
 #pragma mark - Gestures / Events
 -(void)onNext:(id)sender {
     [prev setLetterIndex:letterIndex];
-    [next setLetterIndex:(letterIndex < LETTERS.count - 1)? letterIndex + 1 : 0];
+    [next setLetterIndex:(letterIndex < DataController.getLetters.count - 1)? letterIndex + 1 : 0];
     LetterViewController *t = current;
     current = next;
     next = t;
@@ -159,7 +159,7 @@ static void initializaStaticVariables() {
 }
 
 -(void)onPrev:(id)sender {
-    [prev setLetterIndex:(letterIndex > 0)? letterIndex - 1 : (int)LETTERS.count - 1];
+    [prev setLetterIndex:(letterIndex > 0)? letterIndex - 1 : (int)DataController.getLetters.count - 1];
     [next setLetterIndex:letterIndex];
     LetterViewController *t = current;
     current = prev;
@@ -175,7 +175,7 @@ static void initializaStaticVariables() {
 -(void)onTapPhrase:(id)sender {
     if(spchSynthesizer.isSpeaking)
         return;
-    LetterData *data = LETTERS[letterIndex];
+    LetterData *data = DataController.getLetters[letterIndex];
     AVSpeechUtterance *utterance = [[AVSpeechUtterance alloc]initWithString:data.phrase];
     [utterance setRate:0.05];
     [spchSynthesizer stopSpeakingAtBoundary:AVSpeechBoundaryImmediate];
@@ -193,7 +193,7 @@ static void initializaStaticVariables() {
 }
 
 -(void)onTapEditPhrase:(UITapGestureRecognizer *)sender {
-    LetterEditViewController *levc = [LetterEditViewController getInstance];
+    EditViewController *levc = [EditViewController getInstance];
     [levc setLetterIndex:letterIndex];
     [self.navigationController pushViewController:levc animated:YES];
 }

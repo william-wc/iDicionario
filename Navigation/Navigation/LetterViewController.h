@@ -10,7 +10,7 @@
 #import "LetterData.h"
 #import <AVFoundation/AVFoundation.h>
 #import "DataController.h"
-#import "LetterEditViewController.h"
+#import "EditViewController.h"
 
 @interface LetterViewController : UIViewController 
 

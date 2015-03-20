@@ -7,14 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 
-@interface LetterData : NSObject
+@interface LetterData : RLMObject
 
-@property NSString *letter;
-@property NSString *phrase;
-@property NSString *image;
+@property (strong, nonatomic) NSString *letter;
+@property (strong, nonatomic) NSString *phrase;
+@property (strong, nonatomic) NSString *defaultImage;
+@property (strong, nonatomic) NSString *userImage;
 
 -(id)init:(NSString *)l image:(NSString *)i phrase:(NSString *)p;
+
+-(NSString *)getImageName;
 
 +(id)create:(NSString *)l image:(NSString *)i phrase:(NSString *)p;
 
