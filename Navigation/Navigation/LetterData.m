@@ -17,6 +17,7 @@
         self.phrase = p;
         self.defaultImage = i;
         self.userImage = @"";
+        self.date = [[NSDate alloc] init];
     }
     return self;
 }

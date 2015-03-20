@@ -11,6 +11,7 @@
 @implementation EditViewController {
     UITextField *txtPhrase;
     UIImageView *image;
+    UIDatePicker *datePicker;
     UIButton *btnCancel;
     UIButton *btnConfirm;
     
@@ -40,7 +41,7 @@
     
     alert = [[UIAlertView alloc] initWithTitle:@"Invalid Text" message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-    txtPhrase = [[UITextField alloc]initWithFrame:CGRectMake(center.x - frame.size.width/2, 60, frame.size.width, 70)];
+    txtPhrase = [[UITextField alloc]initWithFrame:CGRectMake(center.x - frame.size.width/2, 50, frame.size.width, 70)];
     [txtPhrase setTextAlignment:NSTextAlignmentCenter];
     [txtPhrase setFont:[UIFont systemFontOfSize:30]];
     [txtPhrase setText:@"text"];
@@ -56,7 +57,15 @@
     [image addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(onTapImage:)]];
     [self.view addSubview:image];
     
-    btnCancel = [[UIButton alloc]initWithFrame:CGRectMake(center.x - 100, frame.size.height - 170, 80, 70)];
+    relative = image.frame;
+    
+    datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(center.x - frame.size.width/2, relative.origin.y + relative.size.height - 20, frame.size.width, 80)];
+    [datePicker setDatePickerMode:UIDatePickerModeDate];
+    [self.view addSubview:datePicker];
+    
+    relative = datePicker.frame;
+    
+    btnCancel = [[UIButton alloc]initWithFrame:CGRectMake(center.x - 140, frame.size.height - 100, 80, 40)];
     [btnCancel addTarget:self action:@selector(onBtnCancel:) forControlEvents:UIControlEventTouchUpInside];
     [btnCancel setTitle:@"Cancel" forState:UIControlStateNormal];
     [btnCancel setBackgroundColor:[UIColor redColor]];
@@ -64,7 +73,7 @@
     
     relative = btnCancel.frame;
 
-    btnConfirm = [[UIButton alloc]initWithFrame:CGRectMake(center.x + 20, relative.origin.y, relative.size.width, relative.size.height)];
+    btnConfirm = [[UIButton alloc]initWithFrame:CGRectMake(center.x + 60, relative.origin.y, relative.size.width, relative.size.height)];
     [btnConfirm addTarget:self action:@selector(onBtnConfirm:) forControlEvents:UIControlEventTouchUpInside];
     [btnConfirm setTitle:@"Confirm" forState:UIControlStateNormal];
     [btnConfirm setBackgroundColor:[UIColor greenColor]];
@@ -82,6 +91,8 @@
     LetterData *data = [DataController getDataAtIndex:letterIndex];
     
     txtPhrase.text = data.phrase;
+    
+    [datePicker setDate:data.date];
     
     UIImage *img = [DataController recoverImageByName:data.userImage];
     if(!img)
@@ -135,6 +146,7 @@
         [realm beginWriteTransaction];
         [data setPhrase:[text capitalizedString]];
         [data setUserImage:[NSString stringWithFormat:@"user_%@", data.letter]];
+        [data setDate:datePicker.date];
         [realm commitWriteTransaction];
         [self.navigationController popViewControllerAnimated:YES];
     }

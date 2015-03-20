@@ -123,7 +123,6 @@ static void initializaStaticVariables() {
     
     txtPhrase.text = [NSString stringWithFormat:@"%@\n%@", data.letter, data.phrase];
     //todo do not use cached images
-    NSLog(@"%@, %@",data.userImage, data.defaultImage);
     UIImage *img = [DataController recoverImageByName:data.userImage];
     if(!img)
         img = [UIImage imageNamed:data.defaultImage];

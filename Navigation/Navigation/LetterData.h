@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString *phrase;
 @property (strong, nonatomic) NSString *defaultImage;
 @property (strong, nonatomic) NSString *userImage;
+@property (strong, nonatomic) NSDate *date;
 
 -(id)init:(NSString *)l image:(NSString *)i phrase:(NSString *)p;
 
